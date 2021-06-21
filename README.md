@@ -1,2 +1,2 @@
 # Car-Dealer-Dorado
-galvanize react training
+galvanize react training.
