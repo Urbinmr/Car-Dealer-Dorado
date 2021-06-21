@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 function Navigation(props) {
   return (
     <nav>
-      <Link to="/">Home</Link>
-      <Link to="/list">Inventory</Link>
-      <Link to="/login">Login</Link>
+      <a href="/">Home</a>
+      <a href="/list">Inventory</a>
+      <a href="/login">Login</a>
     </nav>
   );
 }
