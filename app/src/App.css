@@ -15,7 +15,8 @@
   }
 }
 
-.App-header, .nav-menu {
+.App-header,
+.nav-menu {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,6 +51,11 @@ button {
   margin: 10px 0;
   padding: 10px;
   width: 100%;
+}
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 @keyframes App-logo-spin {
