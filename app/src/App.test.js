@@ -1,8 +1,27 @@
-import { render, screen } from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('app', () => {
+  beforeEach( () => {
+        render(<App/>);
+  });
+
+  it('should render header', () => {
+    const headerElement = screen.getByText(/dorado auto/i);
+    expect(headerElement).toBeInTheDocument();
+  });
+
+  it('should render navigation', () => {
+     const navigationElement = screen.getByRole('button', {name: /menu/i});
+     expect(navigationElement).toBeInTheDocument();
+  })
+
+  it('should render car inventory list', () => {
+    const listElement = screen.getByRole('list', {name: /cars/i});
+    expect(listElement).toBeInTheDocument();
+  })
 });
+
+
+
+
