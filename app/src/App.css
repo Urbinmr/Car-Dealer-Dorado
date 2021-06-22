@@ -60,6 +60,10 @@ nav {
   justify-content: space-evenly;
 }
 
+nav > * {
+  flex:1;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
