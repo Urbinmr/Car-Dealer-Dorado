@@ -21,32 +21,40 @@ const Routes = (
 )
 
 export const CarContext = createContext([])
-export const UserContext = createContext({name: "", isLoggedIn: false})
-
+export const UserContext = createContext({name: "DefaultUser", isLoggedIn: false})
 
 function App() {
+  
   const [cars, setCars] = useState(null);
+  const [user, setUser] = useState({name: "DefaultUser", isLoggedIn: false});
+
+
   useEffect(() => {
+    // setUser({name: "DefaultUser", isLoggedIn: false})
+
     const fetchData = async () => {
       const result = await axios(
         'http://localhost:5000/api/vehicles'
-      )
-
-      setCars(result.data)
-    }
-
-    fetchData()
-  }, [])
+        )
+        
+        setCars(result.data)
+      }
+      
+      fetchData()
+    }, [])
+    
 
   return (
-    <div className="App">
-      <Header/>
-      <Navigation/>
-      <CarContext.Provider value={cars}>
-        {Routes}
-      </CarContext.Provider>
-      <Footer/>
-    </div>
+    <UserContext.Provider value={{user, setUser}}>
+      <div className="App">
+          <Header/>
+            <Navigation/>
+          <CarContext.Provider value={cars}>
+            {Routes}
+          </CarContext.Provider>
+          <Footer/>
+        </div>
+    </UserContext.Provider>
   )
 }
 
