@@ -26,6 +26,9 @@ export const UserContext = createContext({ name: "", isLoggedIn: false });
 
 function App() {
   const [cars, setCars] = useState([]);
+  const [user, setUser] = useState({ name: "DefaultUser", isLoggedIn: false });
+  const [filters, setFilters] = useState({ make: "all", model: "all", year: null })
+
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios("http://localhost:5000/api/vehicles");
@@ -37,14 +40,18 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <Header />
-      <Navigation />
-      <FilterContext.Provider value={{ make: "", model: "all", year: null }}>
-        <CarContext.Provider value={cars}>{Routes}</CarContext.Provider>
-      </FilterContext.Provider>
-      <Footer />
-    </div>
+    <UserContext.Provider value={{ user, setUser }}>
+      <div className="App">
+        <Header />
+        <Navigation />
+        <FilterContext.Provider
+          value={{filters, setFilters}}
+        >
+          <CarContext.Provider value={{cars, setCars}}>{Routes}</CarContext.Provider>
+        </FilterContext.Provider>
+        <Footer />
+      </div>
+    </UserContext.Provider>
   );
 }
 

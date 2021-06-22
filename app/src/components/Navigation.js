@@ -1,11 +1,16 @@
-import { Link } from "react-router-dom";
+import {UserContext} from "../App"
+import {useContext, useEffect} from "react"
+import {Link} from "react-router-dom"
 
 function Navigation(props) {
+  const userContext = useContext(UserContext)
+
   return (
     <nav>
-      <a href="/">Home</a>
-      <a href="/list">Inventory</a>
-      <a href="/login">Login</a>
+      <Link to="/">Home</Link>
+      <Link to="/list">Inventory</Link>
+      {!userContext.user.isLoggedIn && <Link to="/login">Login</Link>}
+      {JSON.stringify(userContext)}
     </nav>
   );
 }
