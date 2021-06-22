@@ -48,7 +48,9 @@ function App() {
       <div className="App">
         <Header />
         <Navigation />
-        <FilterContext.Provider value={{ make: "", model: "all", year: null }}>
+        <FilterContext.Provider
+          value={{ make: "all", model: "all", year: null }}
+        >
           <CarContext.Provider value={cars}>{Routes}</CarContext.Provider>
         </FilterContext.Provider>
         <Footer />
