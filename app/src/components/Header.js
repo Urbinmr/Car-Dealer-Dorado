@@ -1,10 +1,45 @@
+import { AppBar, makeStyles, Toolbar } from "@material-ui/core";
+import DoradoAutoLogo from "../DoradoAutoLogo.png";
+import React from "react";
+import Navigation from "./Navigation";
 
-function Header(props) {
+const useStyles = makeStyles(() => ({
+  header: {
+    display: "flex",
+    height: "15vh",
+    backgroundColor: "#1f1f1f",
+    fontSize: "calc(5px + 2vmin)",
+    color: "#b79756",
+    position: "relative",
+  },
+
+  logo: {
+    height: "14vh",
+  },
+
+  toolbar: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
+}));
+
+export default function Header() {
+  const { header, logo, toolbar } = useStyles();
+
+  const displayDesktop = () => {
     return (
-      <header className="App-header">
-        Dorado Auto
-      </header>
+      <Toolbar className={toolbar}>
+        <img className={logo} src={DoradoAutoLogo} alt="Dorado Auto" />
+        <div>
+          <Navigation />
+        </div>
+      </Toolbar>
     );
-}
+  };
 
-export default Header;
+  return (
+    <header className={header}>
+      <AppBar className={header}>{displayDesktop()}</AppBar>
+    </header>
+  );
+}

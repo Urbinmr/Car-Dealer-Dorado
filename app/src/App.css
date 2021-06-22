@@ -15,19 +15,12 @@
   }
 }
 
-.App-header,
 .nav-menu {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: white;
-}
-
-.App-header {
-  background-color: #282c34;
-  font-size: calc(10px + 2vmin);
-  height: 10vh;
 }
 
 .nav-menu {
@@ -61,14 +54,8 @@ nav {
 }
 
 nav > * {
-  flex:1;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  flex: 1 1;
+  color: #b79756;
+  padding-right: 79px;
+  padding-left: 118px;
 }

@@ -3,7 +3,6 @@ import { createContext, useState, useEffect } from "react";
 
 import "./App.css";
 import Header from "./components/Header";
-import Navigation from "./components/Navigation";
 import VehicleList from "./components/VehicleList";
 import VehicleDetail from "./components/VehicleDetail";
 import VehicleSearchForm from "./components/VehicleSearchForm";
@@ -52,7 +51,6 @@ function App() {
     <UserContext.Provider value={{ user, setUser }}>
       <div className="App">
         <Header />
-        <Navigation />
         <FilterContext.Provider value={{ filters, setFilters }}>
           <CarContext.Provider value={{ cars, setCars }}>
             {Routes}
