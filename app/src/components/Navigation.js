@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom";
 import {UserContext} from "../App"
 import {useContext, useEffect} from "react"
+import {Link} from "@material-ui/core"
 
 function Navigation(props) {
   const userContext = useContext(UserContext)
 
   return (
     <nav>
-      <a href="/">Home</a>
-      <a href="/list">Inventory</a>
-      {!userContext.user.isLoggedIn && <a href="/login">Login</a>}
+      <Link href="/">Home</Link>
+      <Link href="/list">Inventory</Link>
+      {!userContext.user.isLoggedIn && <Link href="/login">Login</Link>}
       {JSON.stringify(userContext)}
     </nav>
   );
