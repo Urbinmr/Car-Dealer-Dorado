@@ -1,32 +1,36 @@
-import { CarContext, FilterContext } from "../App";
-import { useContext } from "react";
-import VehicleDetail from "./VehicleDetail";
+import {CarContext, FilterContext} from "../App"
+import {useContext, useEffect, useState} from "react"
+import VehicleDetail from "./VehicleDetail"
 
 function VehicleList(props) {
-  const cars = useContext(CarContext);
-  const filters = useContext(FilterContext);
+  const {cars} = useContext(CarContext)
+  const {filters} = useContext(FilterContext)
+  const [visibleCars, setVisibleCars] = useState(cars)
 
-  let carItems = cars.filter((car) => car.available);
+  useEffect(() => {
+    let tempCars = cars.filter((car) => car.available)
 
-  carItems = carItems.filter(
-    (car) => car.make === filters.make || filters.make === "all"
-  );
-  carItems = carItems.filter(
-    (car) => car.model === filters.model || filters.model === "all"
-  );
-  carItems = carItems.filter(
-    (car) => car.year === filters.year || filters.year === null
-  );
+    tempCars = tempCars.filter(
+      (car) => car.make === filters.make || filters.make === "all"
+    )
+    tempCars = tempCars.filter(
+      (car) => car.model === filters.model || filters.model === "all"
+    )
+    tempCars = tempCars.filter(
+      (car) => car.year === filters.year || filters.year === null
+    )
+    setVisibleCars(tempCars)
+  }, [filters, cars])
 
-  carItems = carItems.map((car) => {
-    return <VehicleDetail value={car} />;
-  });
+  let carItems = visibleCars.map((car) => {
+    return <VehicleDetail value={car}/>
+  })
 
   return (
     <div className="car-list" aria-label="cars">
       {carItems}
     </div>
-  );
+  )
 }
 
-export default VehicleList;
+export default VehicleList

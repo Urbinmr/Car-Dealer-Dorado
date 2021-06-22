@@ -30,6 +30,11 @@ export const UserContext = createContext({
 function App() {
   const [cars, setCars] = useState([]);
   const [user, setUser] = useState({ name: "DefaultUser", isLoggedIn: false });
+  const [filters, setFilters] = useState({
+    make: "all",
+    model: "all",
+    year: null,
+  });
 
   useEffect(() => {
     setUser({ name: "DefaultUser", isLoggedIn: false });
@@ -48,10 +53,10 @@ function App() {
       <div className="App">
         <Header />
         <Navigation />
-        <FilterContext.Provider
-          value={{ make: "all", model: "all", year: null }}
-        >
-          <CarContext.Provider value={cars}>{Routes}</CarContext.Provider>
+        <FilterContext.Provider value={{ filters, setFilters }}>
+          <CarContext.Provider value={{ cars, setCars }}>
+            {Routes}
+          </CarContext.Provider>
         </FilterContext.Provider>
         <Footer />
       </div>
