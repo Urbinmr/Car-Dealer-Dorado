@@ -37,8 +37,10 @@
 }
 
 .car-list {
+  margin-top: 5vh;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  flex-direction: column;
 }
 
 .App-link {

@@ -1,15 +1,15 @@
-import {Switch, Route} from "react-router-dom"
-import {createContext, useState, useEffect} from "react"
+import { Switch, Route } from "react-router-dom";
+import { createContext, useState, useEffect } from "react";
 
-import "./App.css"
-import Header from "./components/Header"
-import Navigation from "./components/Navigation"
-import VehicleList from "./components/VehicleList"
-import VehicleDetail from "./components/VehicleDetail"
-import VehicleSearchForm from "./components/VehicleSearchForm"
-import Login from "./components/Login"
-import Footer from "./components/Footer"
-import axios from "axios"
+import "./App.css";
+import Header from "./components/Header";
+import Navigation from "./components/Navigation";
+import VehicleList from "./components/VehicleList";
+import VehicleDetail from "./components/VehicleDetail";
+import VehicleSearchForm from "./components/VehicleSearchForm";
+import Login from "./components/Login";
+import Footer from "./components/Footer";
+import axios from "axios";
 
 const Routes = (
   <Switch>
@@ -18,44 +18,43 @@ const Routes = (
     <Route component={VehicleDetail} path="/detail/:id"></Route>
     <Route component={VehicleSearchForm} path="/"></Route>
   </Switch>
-)
+);
 
-export const CarContext = createContext([])
-export const UserContext = createContext({name: "DefaultUser", isLoggedIn: false})
+export const CarContext = createContext(null);
+export const FilterContext = createContext(null);
+export const UserContext = createContext({
+  name: "DefaultUser",
+  isLoggedIn: false,
+});
 
 function App() {
-  
-  const [cars, setCars] = useState(null);
-  const [user, setUser] = useState({name: "DefaultUser", isLoggedIn: false});
-
+  const [cars, setCars] = useState([]);
+  const [user, setUser] = useState({ name: "DefaultUser", isLoggedIn: false });
 
   useEffect(() => {
-    // setUser({name: "DefaultUser", isLoggedIn: false})
+    setUser({ name: "DefaultUser", isLoggedIn: false });
 
     const fetchData = async () => {
-      const result = await axios(
-        'http://localhost:5000/api/vehicles'
-        )
-        
-        setCars(result.data)
-      }
-      
-      fetchData()
-    }, [])
-    
+      const result = await axios("http://localhost:5000/api/vehicles");
+
+      setCars(result.data);
+    };
+
+    fetchData();
+  }, []);
 
   return (
-    <UserContext.Provider value={{user, setUser}}>
+    <UserContext.Provider value={{ user, setUser }}>
       <div className="App">
-          <Header/>
-            <Navigation/>
-          <CarContext.Provider value={cars}>
-            {Routes}
-          </CarContext.Provider>
-          <Footer/>
-        </div>
+        <Header />
+        <Navigation />
+        <FilterContext.Provider value={{ make: "", model: "all", year: null }}>
+          <CarContext.Provider value={cars}>{Routes}</CarContext.Provider>
+        </FilterContext.Provider>
+        <Footer />
+      </div>
     </UserContext.Provider>
-  )
+  );
 }
 
-export default App
+export default App;
