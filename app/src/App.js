@@ -1,13 +1,15 @@
-import { Switch, Route } from "react-router-dom";
+import {Switch, Route} from "react-router-dom"
+import {createContext, useState, useEffect} from "react"
 
-import "./App.css";
-import Header from "./components/Header";
-import Navigation from "./components/Navigation";
-import VehicleList from "./components/VehicleList";
-import VehicleDetail from "./components/VehicleDetail";
-import VehicleSearchForm from "./components/VehicleSearchForm";
-import Login from "./components/Login";
-import Footer from "./components/Footer";
+import "./App.css"
+import Header from "./components/Header"
+import Navigation from "./components/Navigation"
+import VehicleList from "./components/VehicleList"
+import VehicleDetail from "./components/VehicleDetail"
+import VehicleSearchForm from "./components/VehicleSearchForm"
+import Login from "./components/Login"
+import Footer from "./components/Footer"
+import axios from "axios"
 
 const Routes = (
   <Switch>
@@ -16,17 +18,36 @@ const Routes = (
     <Route component={VehicleDetail} path="/detail/:id"></Route>
     <Route component={VehicleSearchForm} path="/"></Route>
   </Switch>
-);
+)
+
+export const CarContext = createContext([])
+export const UserContext = createContext({name: "", isLoggedIn: false})
+
 
 function App() {
+  const [cars, setCars] = useState(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        'http://localhost:5000/api/vehicles'
+      )
+
+      setCars(result.data)
+    }
+
+    fetchData()
+  }, [])
+
   return (
     <div className="App">
-      <Header />
-      <Navigation />
-      {Routes}
-      <Footer />
+      <Header/>
+      <Navigation/>
+      <CarContext.Provider value={cars}>
+        {Routes}
+      </CarContext.Provider>
+      <Footer/>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
