@@ -1,6 +1,6 @@
-import { TextField, Button, CardActions } from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { useLocation, useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useContext, useState } from "react";
 import { MessagingContext } from "../App";
 

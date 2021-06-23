@@ -12,6 +12,12 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  searchFormWrapper: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center"
+  }
 }));
 
 function VehicleSearchForm(props) {
@@ -47,7 +53,7 @@ function VehicleSearchForm(props) {
   })
 
   return (
-    <div>
+    <div className={classes.searchFormWrapper}>
       <FormControl className={classes.formControl}>
         <InputLabel id="make-input-label">Make</InputLabel>
         <Select
@@ -57,6 +63,7 @@ function VehicleSearchForm(props) {
           onChange={handleSelectMake}
         >
           {makeMenuItems}
+          <MenuItem key="All" value="All">All</MenuItem>
         </Select>
       </FormControl>
       <FormControl className={classes.formControl}>
@@ -68,6 +75,7 @@ function VehicleSearchForm(props) {
           onChange={handleSelectModel}
         >
           {modelMenuItems}
+          <MenuItem key="All" value="All">All</MenuItem>
         </Select>
       </FormControl>
       <FormControl className={classes.formControl}>
@@ -79,6 +87,7 @@ function VehicleSearchForm(props) {
           onChange={handleSelectYear}
         >
           {yearMenuItems}
+          <MenuItem key="All" value="All">All</MenuItem>
         </Select>
       </FormControl>
       <Link to="/list">Search</Link>

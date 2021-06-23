@@ -11,19 +11,19 @@ function VehicleList(props) {
     let tempCars = cars.filter((car) => car.available);
 
     tempCars = tempCars.filter(
-      (car) => car.make === filters.make || filters.make === "all"
+      (car) => car.make === filters.make || filters.make === "All"
     );
     tempCars = tempCars.filter(
-      (car) => car.model === filters.model || filters.model === "all"
+      (car) => car.model === filters.model || filters.model === "All"
     );
     tempCars = tempCars.filter(
-      (car) => car.year === filters.year || filters.year === null
+      (car) => car.year === filters.year || filters.year === "All"
     );
     setVisibleCars(tempCars);
   }, [filters, cars]);
 
   let carItems = visibleCars.map((car) => {
-    return <VehicleDetail value={car} type="list" />;
+    return <VehicleDetail key={car.id} value={car} type="list" />;
   });
 
   return (

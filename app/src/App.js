@@ -36,9 +36,9 @@ function App() {
     cart: [],
   });
   const [filters, setFilters] = useState({
-    make: "all",
-    model: "all",
-    year: null,
+    make: "All",
+    model: "All",
+    year: "All",
   });
   const [messages, setMessages] = useState(new Map());
 
