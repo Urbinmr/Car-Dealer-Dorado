@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-  padding: 10px;
   margin: 0 auto;
 }
 
@@ -50,12 +49,17 @@ button {
 
 nav {
   display: flex;
+  flex: 3;
   justify-content: space-evenly;
 }
 
 nav > * {
   flex: 1 1;
   color: #b79756;
-  padding-right: 79px;
-  padding-left: 118px;
+  text-decoration: none;
+}
+
+nav > a.active {
+  color: white;
+  font-weight: 900;
 }

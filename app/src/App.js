@@ -9,7 +9,7 @@ import VehicleDetail from "./components/VehicleDetail";
 import Login from "./components/Login";
 import Footer from "./components/Footer";
 import axios from "axios";
-import Home from "./components/Home"
+import Home from "./components/Home";
 
 const Routes = (
   <Switch>
@@ -23,14 +23,15 @@ const Routes = (
 
 export const CarContext = createContext(null);
 export const FilterContext = createContext(null);
-export const UserContext = createContext({
-  name: "DefaultUser",
-  isLoggedIn: false,
-});
+export const UserContext = createContext(null);
 
 function App() {
   const [cars, setCars] = useState([]);
-  const [user, setUser] = useState({ name: "DefaultUser", isLoggedIn: false });
+  const [user, setUser] = useState({
+    name: "DefaultUser",
+    isLoggedIn: false,
+    cart: [],
+  });
   const [filters, setFilters] = useState({
     make: "all",
     model: "all",
@@ -38,8 +39,6 @@ function App() {
   });
 
   useEffect(() => {
-    setUser({ name: "DefaultUser", isLoggedIn: false });
-
     const fetchData = async () => {
       const result = await axios("http://localhost:5000/api/vehicles");
 

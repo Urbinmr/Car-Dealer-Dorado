@@ -1,6 +1,13 @@
-import {Card, CardMedia, CardContent, Typography, CardActions, Button} from "@material-ui/core"
-import {makeStyles} from '@material-ui/core/styles'
-
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  CardActions,
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import AddToCart from "./AddToCart";
+import DeleteFromCart from "./DeleteFromCart";
 const useStyles = makeStyles({
   carImage: {
     height: 200,
@@ -23,43 +30,41 @@ const useStyles = makeStyles({
   },
   buttonWrapper: {
     alignItems: "unset",
-  }
-})
+  },
+});
 
 function VehicleDetail(props) {
-  const classes = useStyles()
+  const classes = useStyles();
+
+  const { image, make, model, year, color, price, id } = props.value;
+  const { type } = props;
 
   return (
     <Card className={classes.carCard}>
-      <CardMedia
-        className={classes.carImage}
-        image={props.value.image}
-        title="Car"
-      />
+      <CardMedia className={classes.carImage} image={image} title="Car" />
       <CardContent className={classes.carInfo}>
         <Typography gutterBottom variant="h5" component="h2">
-          {props.value.make}
+          {make}
         </Typography>
         <Typography gutterBottom variant="h5" component="h2">
-          {props.value.model}
+          {model}
         </Typography>
         <Typography gutterBottom variant="h5" component="h2">
-          {props.value.year}
+          {year}
         </Typography>
         <Typography gutterBottom variant="h5" component="h2">
-          {props.value.color}
+          {color}
         </Typography>
         <Typography gutterBottom variant="h5" component="h2">
-          ${props.value.price}
+          ${price}
         </Typography>
       </CardContent>
       <CardActions className={classes.buttonWrapper}>
-        <Button variant="contained" color="primary" height="100%">
-          Buy
-        </Button>
+        {type === "list" && <AddToCart id={id} />}
+        {type === "cart" && <DeleteFromCart id={id} />}
       </CardActions>
     </Card>
-  )
+  );
 }
 
-export default VehicleDetail
+export default VehicleDetail;

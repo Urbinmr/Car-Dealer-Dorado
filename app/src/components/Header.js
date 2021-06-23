@@ -10,7 +10,6 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "#1f1f1f",
     fontSize: "calc(5px + 2vmin)",
     color: "#b79756",
-    position: "relative",
   },
 
   logo: {
@@ -30,9 +29,7 @@ export default function Header() {
     return (
       <Toolbar className={toolbar}>
         <img className={logo} src={DoradoAutoLogo} alt="Dorado Auto" />
-        <div>
-          <Navigation />
-        </div>
+        <Navigation />
       </Toolbar>
     );
   };
