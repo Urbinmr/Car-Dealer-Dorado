@@ -64,10 +64,15 @@ function VehicleDetail(props) {
         </Typography>
       </CardContent>
       <CardActions className={classes.buttonWrapper}>
-        <Button variant="contained" color="secondary" height="100%" onClick={() => history.push({
-          pathname: '/messages',
-          search: `?query=${props.value.id}`
-        })}
+        <Button
+          variant="contained"
+          color="secondary"
+          height="100%"
+          onClick={() =>
+            history.push({
+              pathname: `/messages/${props.value.id}`,
+            })
+          }
         >
           Contact
         </Button>
