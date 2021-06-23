@@ -1,5 +1,6 @@
 import {Card, CardMedia, CardContent, Typography, CardActions, Button} from "@material-ui/core"
 import {makeStyles} from '@material-ui/core/styles'
+import {useHistory} from "react-router"
 
 const useStyles = makeStyles({
   carImage: {
@@ -27,6 +28,7 @@ const useStyles = makeStyles({
 })
 
 function VehicleDetail(props) {
+  const history = useHistory()
   const classes = useStyles()
 
   return (
@@ -53,6 +55,15 @@ function VehicleDetail(props) {
           ${props.value.price}
         </Typography>
       </CardContent>
+      <CardActions className={classes.buttonWrapper}>
+        <Button variant="contained" color="secondary" height="100%" onClick={() => history.push({
+          pathname: '/messages',
+          search: `?query=${props.value.id}`
+        })}
+        >
+          Contact
+        </Button>
+      </CardActions>
       <CardActions className={classes.buttonWrapper}>
         <Button variant="contained" color="primary" height="100%">
           Buy
