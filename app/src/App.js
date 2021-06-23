@@ -3,19 +3,21 @@ import { createContext, useState, useEffect } from "react";
 
 import "./App.css";
 import Header from "./components/Header";
-import VehicleList from "./components/VehicleList";
+import Messages from "./components/Messages";
+import Cart from "./components/Cart";
 import VehicleDetail from "./components/VehicleDetail";
-import VehicleSearchForm from "./components/VehicleSearchForm";
 import Login from "./components/Login";
 import Footer from "./components/Footer";
 import axios from "axios";
+import Home from "./components/Home"
 
 const Routes = (
   <Switch>
-    <Route component={VehicleList} path="/list"></Route>
+    <Route component={Cart} path="/cart"></Route>
+    <Route component={Messages} path="/messages"></Route>
     <Route component={Login} path="/login"></Route>
     <Route component={VehicleDetail} path="/detail/:id"></Route>
-    <Route component={VehicleSearchForm} path="/"></Route>
+    <Route component={Home} path="/"></Route>
   </Switch>
 );
 

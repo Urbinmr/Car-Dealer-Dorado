@@ -52,6 +52,7 @@ function VehicleSearchForm(props) {
         <InputLabel id="make-input-label">Make</InputLabel>
         <Select
           id="select-make"
+          labelId="make-input-label"
           value={filters.make}
           onChange={handleSelectMake}
         >
@@ -62,6 +63,7 @@ function VehicleSearchForm(props) {
         <InputLabel id="model-input-label">Model</InputLabel>
         <Select
           id="select-model"
+          labelId="model-input-label"
           value={filters.model}
           onChange={handleSelectModel}
         >
@@ -72,6 +74,7 @@ function VehicleSearchForm(props) {
         <InputLabel id="year-input-label">Year</InputLabel>
         <Select
           id="select-year"
+          labelId="year-input-label"
           value={filters.year}
           onChange={handleSelectYear}
         >

@@ -9,7 +9,8 @@ function Navigation(props) {
   return (
     <nav>
       <Link to="/">Home</Link>
-      <Link to="/list">Inventory</Link>
+      <Link to="/cart">Cart</Link>
+      <Link to="/messages">Messages</Link>
       {!user.isLoggedIn && <Link to="/login">Login</Link>}
       {user.isLoggedIn && <Button variant="contained" color="primary" onClick={() => setUser({name:'', isLoggedIn:false})}>Log Out</Button>}
     </nav>
