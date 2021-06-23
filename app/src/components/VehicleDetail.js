@@ -4,10 +4,13 @@ import {
   CardContent,
   Typography,
   CardActions,
+  Button
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import AddToCart from "./AddToCart";
 import DeleteFromCart from "./DeleteFromCart";
+import {useHistory} from "react-router"
+
 const useStyles = makeStyles({
   carImage: {
     height: 200,
@@ -35,6 +38,7 @@ const useStyles = makeStyles({
 
 function VehicleDetail(props) {
   const classes = useStyles();
+  const history = useHistory()
 
   const { image, make, model, year, color, price, id } = props.value;
   const { type } = props;
@@ -59,6 +63,15 @@ function VehicleDetail(props) {
           ${price}
         </Typography>
       </CardContent>
+      <CardActions className={classes.buttonWrapper}>
+        <Button variant="contained" color="secondary" height="100%" onClick={() => history.push({
+          pathname: '/messages',
+          search: `?query=${props.value.id}`
+        })}
+        >
+          Contact
+        </Button>
+      </CardActions>
       <CardActions className={classes.buttonWrapper}>
         {type === "list" && <AddToCart id={id} />}
         {type === "cart" && <DeleteFromCart id={id} />}
