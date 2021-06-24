@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { UserContext, CarContext } from "../App";
-import VehicleDetail from "./VehicleDetail";
+import CartItems from "./CartItems";
 
 function Cart(props) {
   const { user } = useContext(UserContext);
@@ -8,14 +8,7 @@ function Cart(props) {
 
   const carsInCart = cars.filter((car) => user.cart.includes(car.id));
 
-  return (
-    <div>
-      {carsInCart.length === 0 && <div>Nothing in your cart</div>}
-      {carsInCart.map((car) => (
-        <VehicleDetail value={car} type="cart"></VehicleDetail>
-      ))}
-    </div>
-  );
+  return <CartItems cartItems={carsInCart} />;
 }
 
 export default Cart;
