@@ -44,12 +44,15 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios("http://localhost:5000/api/vehicles");
-
-      setCars(result.data);
+      try {
+        const result = await axios.get("http://localhost:5000/api/vehicles");
+        setCars(result.data);
+      } catch (e) {
+        console.log(`Error retrieving vehicles from api: ${e}`)
+      }
     };
 
-    fetchData();
+    fetchData().then()
   }, []);
 
   return (
