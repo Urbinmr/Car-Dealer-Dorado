@@ -1,8 +1,8 @@
-import {FormControl, InputLabel, Select, MenuItem} from "@material-ui/core"
-import {useContext} from "react"
-import {FilterContext, CarContext} from "../App"
-import { makeStyles } from "@material-ui/core/styles"
-import {Link} from "react-router-dom"
+import { FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
+import { useContext } from "react";
+import { FilterContext, CarContext } from "../App";
+import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -16,41 +16,54 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center"
-  }
+    justifyContent: "center",
+  },
 }));
 
 function VehicleSearchForm(props) {
   const classes = useStyles();
-  const {filters, setFilters} = useContext(FilterContext)
-  const { cars } = useContext(CarContext)
+  const { filters, setFilters } = useContext(FilterContext);
+  const { cars } = useContext(CarContext);
 
   const handleSelectMake = (e) => {
-    setFilters({...filters, make: e.target.value})
-  }
+    setFilters({ ...filters, make: e.target.value });
+  };
 
   const handleSelectModel = (e) => {
-    setFilters({...filters, model: e.target.value})
-  }
+    setFilters({ ...filters, model: e.target.value });
+  };
 
   const handleSelectYear = (e) => {
-    setFilters({...filters, year: e.target.value})
-  }
+    setFilters({ ...filters, year: e.target.value });
+  };
 
-  const makeOptions = [...new Set(cars.map(car => car.make))]
-  const makeMenuItems = makeOptions.map(makeOption => {
-    return <MenuItem key={makeOption} value={makeOption}>{makeOption}</MenuItem>
-  })
+  const makeOptions = [...new Set(cars.map((car) => car.make))];
+  const makeMenuItems = makeOptions.map((makeOption) => {
+    return (
+      <MenuItem key={makeOption} value={makeOption}>
+        {makeOption}
+      </MenuItem>
+    );
+  });
 
-  const modelOptions = [...new Set(cars.map(car => car.model))]
-  const modelMenuItems = modelOptions.map(modelOption => {
-    return <MenuItem key={modelOption} value={modelOption}>{modelOption}</MenuItem>
-  })
+  const modelOptions = [...new Set(cars.map((car) => car.model))];
+  const modelMenuItems = modelOptions.map((modelOption) => {
+    return (
+      <MenuItem key={modelOption} value={modelOption}>
+        {modelOption}
+      </MenuItem>
+    );
+  });
 
-  const yearOptions = [...new Set(cars.map(car => car.year))]
-  const yearMenuItems = yearOptions.map(yearOption => {
-    return <MenuItem key={yearOption} value={yearOption}> {yearOption}</MenuItem>
-  })
+  const yearOptions = [...new Set(cars.map((car) => car.year))].sort();
+  const yearMenuItems = yearOptions.map((yearOption) => {
+    return (
+      <option key={yearOption} value={yearOption}>
+        {" "}
+        {yearOption}
+      </option>
+    );
+  });
 
   return (
     <div className={classes.searchFormWrapper}>
@@ -63,7 +76,9 @@ function VehicleSearchForm(props) {
           onChange={handleSelectMake}
         >
           {makeMenuItems}
-          <MenuItem key="All" value="All">All</MenuItem>
+          <MenuItem key="All" value="All">
+            All
+          </MenuItem>
         </Select>
       </FormControl>
       <FormControl className={classes.formControl}>
@@ -75,24 +90,29 @@ function VehicleSearchForm(props) {
           onChange={handleSelectModel}
         >
           {modelMenuItems}
-          <MenuItem key="All" value="All">All</MenuItem>
+          <MenuItem key="All" value="All">
+            All
+          </MenuItem>
         </Select>
       </FormControl>
       <FormControl className={classes.formControl}>
         <InputLabel id="year-input-label">Year</InputLabel>
         <Select
+          native={true}
+          data-testid="select-year"
           id="select-year"
           labelId="year-input-label"
           value={filters.year}
           onChange={handleSelectYear}
         >
           {yearMenuItems}
-          <MenuItem key="All" value="All">All</MenuItem>
+          <option key="All" value="All">
+            All
+          </option>
         </Select>
       </FormControl>
-      <Link to="/list">Search</Link>
     </div>
-  )
+  );
 }
 
-export default VehicleSearchForm
+export default VehicleSearchForm;
