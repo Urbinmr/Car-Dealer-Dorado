@@ -15,6 +15,7 @@ function DeleteFromCart(props) {
       variant="contained"
       color="primary"
       height="100%"
+      data-testid="deleteButton"
     >
       Delete
     </Button>

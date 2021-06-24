@@ -3,7 +3,6 @@ import VehicleDetail from "./VehicleDetail";
 
 function CartItems(props) {
   const { cartItems } = props;
-
   return (
     <div>
       {cartItems.length === 0 && (
